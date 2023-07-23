@@ -132,7 +132,7 @@ const BooksEdit = () => {
   };
 
   const checkRequirements = () => {
-    if (currentBook.title.length && currentBook.pdfURL.length) {
+    if (currentBook.title.trim().length && currentBook.pdfURL.trim().length) {
       setErrorMessage('');
       return true;
     }

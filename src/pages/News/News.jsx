@@ -38,7 +38,10 @@ const News = () => {
           e.target.src = noImage;
         }}
       />
-      <p className={styles.news_text}>{text}</p>
+      <div
+        className={styles.news_text}
+        dangerouslySetInnerHTML={{ __html: text }}
+      ></div>
     </PageWrapper>
   );
 };

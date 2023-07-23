@@ -9,6 +9,7 @@ import {
 } from 'services/api';
 import { formatDate } from 'utils/utils';
 import ConfirmModal from 'components/Modal/ConfirmModal';
+import HtmlTextEditor from 'components/HtmlTextEditor';
 import Tooltip from 'components/Tooltip';
 import styles from './NewsEdit.module.scss';
 
@@ -123,7 +124,7 @@ const NewsEdit = () => {
   };
 
   const checkRequirements = () => {
-    if (currentNews.title.length && currentNews.text.length) {
+    if (currentNews.title.trim().length && currentNews.text.trim().length) {
       setErrorMessage('');
       return true;
     }
@@ -277,20 +278,11 @@ const NewsEdit = () => {
           </li>
           <li>
             <label htmlFor="newsText">Текст</label>
-            <textarea
-              name=""
+            <HtmlTextEditor
               id="newsText"
-              cols="30"
-              rows="10"
-              required
-              value={currentNews.text}
-              onChange={handleFieldChange}
-              className={
-                errorMessage.length && !currentNews.text.length
-                  ? 'required_field_warning'
-                  : ''
-              }
-            ></textarea>
+              text={currentNews.text}
+              onTextChange={text => setCurrentNews(prev => ({ ...prev, text }))}
+            />
           </li>
         </ul>
         <span className="warning_message">

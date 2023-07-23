@@ -99,7 +99,10 @@ const ScheduleEdit = () => {
   };
 
   const checkRequirements = () => {
-    if (currentLesson.lesson.length && currentLesson.teacher.length) {
+    if (
+      currentLesson.lesson.trim().length &&
+      currentLesson.teacher.trim().length
+    ) {
       setErrorMessage('');
       return true;
     }
