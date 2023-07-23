@@ -1,0 +1,33 @@
+.controls {
+  margin: 20px 0;
+
+  p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  div {
+    display: flex;
+  }
+
+  button {
+    margin-right: 5px;
+    padding: 5px;
+    min-width: 180px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  input {
+    margin-right: 5px;
+    height: 40px;
+    text-align: center;
+  }
+
+  a {
+    margin-left: auto;
+    display: block;
+  }
+}

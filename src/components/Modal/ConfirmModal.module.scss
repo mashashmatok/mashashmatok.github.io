@@ -1,0 +1,53 @@
+.modal_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(black, 0.5);
+  display: flex;
+
+  .modal {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: -2rem 2rem 2rem rgba(black, 0.25);
+
+    h2 {
+      border-bottom: 1px solid #eee;
+      padding: 16px;
+      margin: 0;
+    }
+
+    .content {
+      padding: 10px;
+    }
+
+    .text {
+      padding: 16px;
+      font-size: 20px;
+    }
+
+    .accent_text {
+      @extend .text;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px;
+
+      button:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import 'styles/colors.scss';
+
+.bookslist_container {
+  ol {
+    margin-bottom: 15px;
+
+    li {
+      margin-bottom: 5px;
+
+      span {
+        display: inline-block;
+        min-width: 400px;
+        border-bottom: 1px dashed #aaa;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      button {
+        margin-left: 10px;
+        min-width: 150px;
+        padding: 2px;
+      }
+    }
+  }
+}
+
+.book_form {
+  ul {
+    li {
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      margin: 10px 0;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    button {
+      padding: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  .warning_message {
+    color: $warning-color;
+    font-size: 20px;
+  }
+}

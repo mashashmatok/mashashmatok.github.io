@@ -1,0 +1,62 @@
+.search_container {
+  display: flex;
+  margin-bottom: 20px;
+
+  input {
+    width: 100%;
+    height: 40px;
+    margin-right: 5px;
+    font-size: 24px;
+    border-radius: 3px;
+  }
+}
+
+.books_container {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      margin-bottom: 20px;
+      width: calc(100% / 3);
+      min-width: 400px;
+
+      h2 {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 10px auto;
+        text-align: center;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        object-fit: contain;
+        overflow: hidden;
+        margin: 10px auto;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        transition: 0.5s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+
+        img {
+          height: 100%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+.more_news_block {
+  text-align: center;
+  margin: 20px;
+  min-height: 20px;
+}

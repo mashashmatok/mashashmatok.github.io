@@ -1,0 +1,145 @@
+@import 'styles/colors.scss';
+
+.table_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 20px;
+
+  input:hover:not(:focus) {
+    cursor: pointer;
+  }
+
+  button {
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    height: 30px;
+  }
+}
+
+.subject_schedule_table {
+  min-width: 750px;
+  margin-bottom: 15px;
+
+  tr {
+    &:nth-child(7n + 1) {
+      color: #ffffff;
+      background: $primary-blue-color;
+    }
+
+    td {
+      min-width: 200px;
+      text-align: center;
+
+      &:first-child {
+        min-width: 30px;
+        width: 30px;
+      }
+
+      input {
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+        border: 0;
+
+        &:focus {
+          background-color: #11ff0038;
+          border: 0;
+
+          &::placeholder {
+            color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+.schedule_times_table {
+  width: 300px;
+  text-align: center;
+  margin-bottom: 15px;
+
+  tr {
+    &:first-child {
+      color: #ffffff;
+      background: $primary-blue-color;
+    }
+
+    td {
+      &:first-child {
+        width: 30px;
+      }
+
+      input {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+        border: 0;
+
+        &:focus {
+          background-color: #11ff0038;
+          border: 0;
+
+          &::placeholder {
+            color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+.lessonslist_container {
+  button {
+    padding: 5px;
+    margin-right: 5px;
+    height: 30px;
+  }
+
+  ol {
+    margin-bottom: 15px;
+
+    li {
+      margin-bottom: 5px;
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        min-width: 400px;
+        border-bottom: 1px dashed #aaa;
+      }
+
+      button {
+        margin-left: 10px;
+        min-width: 100px;
+        padding: 2px;
+      }
+    }
+  }
+}
+
+.lesson_form {
+  ul {
+    li {
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 5px;
+      margin-right: 5px;
+    }
+  }
+}

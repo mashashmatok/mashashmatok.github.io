@@ -1,0 +1,54 @@
+@import 'styles/colors.scss';
+
+.auth_form {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 600px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fcfcfc;
+  border-radius: 20px;
+  background-color: #fcfcfc;
+
+  box-shadow: 0px 5px 10px 5px $menu-shadow;
+  -moz-box-shadow: 0px 5px 10px 5px $menu-shadow;
+  -webkit-box-shadow: 0px 5px 10px 5px $menu-shadow;
+
+  li {
+    position: relative;
+    margin: 10px 0;
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      border-radius: 3px;
+      padding-left: 40px;
+    }
+
+    .input_icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-top: 45px;
+      margin-left: 10px;
+
+      width: 20px;
+      height: 20px;
+      fill: black;
+    }
+
+    button {
+      display: inline-block;
+      width: 100%;
+    }
+
+    p {
+      color: $warning-color;
+      font-size: 20px;
+    }
+  }
+}
