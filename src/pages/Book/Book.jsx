@@ -2,26 +2,21 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchRequest, ENDPOINTS } from 'services/api';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { fetchAsBlob, convertBlobToBase64 } from 'utils/utils';
 import PageWrapper from 'components/PageWrapper';
 import styles from './Book.module.scss';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.js',
-  import.meta.url,
-).toString();
-const defaultScale = 2.1;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+const DEFAULT_SCALE = 2.1;
 
 const Book = () => {
   const { id: bookId } = useParams(null);
   const [book, setBook] = useState(null);
-  const [bookData, setBookData] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageInputNumber, setPageInputNumber] = useState(1);
-  const [scale, setScale] = useState(defaultScale);
+  const [scale, setScale] = useState(DEFAULT_SCALE);
 
   const getBook = () => {
     fetchRequest({ url: ENDPOINTS.BOOKS + `/${bookId}` }).then(book => {
@@ -39,12 +34,6 @@ const Book = () => {
 
     getBook();
   }, [bookId]);
-
-  useEffect(() => {
-    if (!book?.pdfURL) return;
-
-    fetchAsBlob(book.pdfURL).then(convertBlobToBase64).then(setBookData);
-  }, [book]);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -137,21 +126,19 @@ const Book = () => {
     <PageWrapper>
       <h2>{book?.title || ''}</h2>
       {renderControls(numPages)}
-      {bookData ? (
-        <Document
-          file={bookData}
-          onLoadSuccess={onDocumentLoadSuccess}
-          onClick={handleNextPage}
-          onContextMenu={handlePrevPage}
-          loading="Загрузка PDF файла..."
-          error={`Не удалось загрузить файл ${
-            !getFileName(book) ? '.' : getFileName(book)
-          }`}
-          noData=""
-        >
-          <Page pageNumber={pageNumber} scale={scale} />
-        </Document>
-      ) : null}
+      <Document
+        file={book?.pdfURL || ''}
+        onLoadSuccess={onDocumentLoadSuccess}
+        onClick={handleNextPage}
+        onContextMenu={handlePrevPage}
+        loading="Загрузка PDF файла..."
+        error={`Не удалось загрузить файл ${
+          !getFileName(book) ? '.' : getFileName(book)
+        }`}
+        noData=""
+      >
+        <Page pageNumber={pageNumber} scale={scale} />
+      </Document>
     </PageWrapper>
   );
 };
