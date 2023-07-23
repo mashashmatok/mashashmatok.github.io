@@ -13,6 +13,7 @@ const DEFAULT_SCALE = 2.1;
 const Book = () => {
   const { id: bookId } = useParams(null);
   const [book, setBook] = useState(null);
+  const [isBookNotFound, setIsBookNotFound] = useState(false);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageInputNumber, setPageInputNumber] = useState(1);
@@ -21,7 +22,12 @@ const Book = () => {
   const getBook = () => {
     fetchRequest({ url: ENDPOINTS.BOOKS + `/${bookId}` }).then(book => {
       if (!book) return;
-      setBook(book);
+
+      if (book?.id) {
+        setBook(book);
+      } else {
+        setIsBookNotFound(true);
+      }
     });
   };
 
@@ -124,21 +130,28 @@ const Book = () => {
 
   return (
     <PageWrapper>
-      <h2>{book?.title || ''}</h2>
-      {renderControls(numPages)}
-      <Document
-        file={book?.pdfURL || ''}
-        onLoadSuccess={onDocumentLoadSuccess}
-        onClick={handleNextPage}
-        onContextMenu={handlePrevPage}
-        loading="Загрузка PDF файла..."
-        error={`Не удалось загрузить файл ${
-          !getFileName(book) ? '.' : getFileName(book)
-        }`}
-        noData=""
-      >
-        <Page pageNumber={pageNumber} scale={scale} />
-      </Document>
+      {book?.id ? (
+        <div>
+          <h2>{book?.title || ''}</h2>
+          {renderControls(numPages)}
+          <Document
+            file={book?.pdfURL || ''}
+            onLoadSuccess={onDocumentLoadSuccess}
+            onClick={handleNextPage}
+            onContextMenu={handlePrevPage}
+            loading="Загрузка PDF файла..."
+            error={`Не удалось загрузить файл ${
+              !getFileName(book) ? '.' : getFileName(book)
+            }`}
+            noData=""
+          >
+            <Page pageNumber={pageNumber} scale={scale} />
+          </Document>
+        </div>
+      ) : null}
+      {isBookNotFound && (
+        <h1 className={styles.title_warning}>Книга не найдена</h1>
+      )}
     </PageWrapper>
   );
 };

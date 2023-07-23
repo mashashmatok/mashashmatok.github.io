@@ -1,3 +1,11 @@
+@import 'styles/colors.scss';
+
 .title {
-    text-align: center;
+  text-align: center;
+  color: $warning-color;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 72px;
 }
