@@ -137,19 +137,21 @@ const Book = () => {
     <PageWrapper>
       <h2>{book?.title || ''}</h2>
       {renderControls(numPages)}
-      <Document
-        file={bookData || ''}
-        onLoadSuccess={onDocumentLoadSuccess}
-        onClick={handleNextPage}
-        onContextMenu={handlePrevPage}
-        loading="Загрузка PDF файла..."
-        error={`Не удалось загрузить файл ${
-          !getFileName(book) ? '.' : getFileName(book)
-        }`}
-        noData=""
-      >
-        <Page pageNumber={pageNumber} scale={scale} />
-      </Document>
+      {bookData ? (
+        <Document
+          file={bookData}
+          onLoadSuccess={onDocumentLoadSuccess}
+          onClick={handleNextPage}
+          onContextMenu={handlePrevPage}
+          loading="Загрузка PDF файла..."
+          error={`Не удалось загрузить файл ${
+            !getFileName(book) ? '.' : getFileName(book)
+          }`}
+          noData=""
+        >
+          <Page pageNumber={pageNumber} scale={scale} />
+        </Document>
+      ) : null}
     </PageWrapper>
   );
 };
