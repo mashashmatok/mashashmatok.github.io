@@ -23,9 +23,6 @@ const ConfirmModal = ({
 
   useEffect(() => {
     const handleKeyDown = event => {
-      if (event?.key === 'Enter' && !type) {
-        handleSubmit();
-      }
       if (event?.key === 'Escape') {
         handleCancel(event);
       }
