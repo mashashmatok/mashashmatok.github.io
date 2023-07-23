@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchRequest, ENDPOINTS } from 'services/api';
-import PageWrapper from 'components/PageWrapper';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { fetchAsBlob, convertBlobToBase64 } from 'utils/utils';
+import PageWrapper from 'components/PageWrapper';
 import styles from './Book.module.scss';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -15,7 +16,8 @@ const defaultScale = 2.1;
 
 const Book = () => {
   const { id: bookId } = useParams(null);
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState(null);
+  const [bookData, setBookData] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageInputNumber, setPageInputNumber] = useState(1);
@@ -37,6 +39,12 @@ const Book = () => {
 
     getBook();
   }, [bookId]);
+
+  useEffect(() => {
+    if (!book?.pdfURL) return;
+
+    fetchAsBlob(book.pdfURL).then(convertBlobToBase64).then(setBookData);
+  }, [book]);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -127,10 +135,10 @@ const Book = () => {
 
   return (
     <PageWrapper>
-      <h2>{book.title}</h2>
+      <h2>{book?.title || ''}</h2>
       {renderControls(numPages)}
       <Document
-        file={book?.pdfURL || ''}
+        file={bookData || ''}
         onLoadSuccess={onDocumentLoadSuccess}
         onClick={handleNextPage}
         onContextMenu={handlePrevPage}
@@ -138,7 +146,7 @@ const Book = () => {
         error={`Не удалось загрузить файл ${
           !getFileName(book) ? '.' : getFileName(book)
         }`}
-        noData="Не удалось загрузить файл."
+        noData=""
       >
         <Page pageNumber={pageNumber} scale={scale} />
       </Document>
