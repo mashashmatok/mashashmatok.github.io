@@ -90,7 +90,13 @@ const Login = () => {
             <Link to={ROUTES.REGISTER}>Еще нет аккаунта</Link>
           </li>
           <li>
-            <button className="primary" onClick={() => loginUser(user)}>
+            <button
+              className="primary"
+              onClick={e => {
+                e.preventDefault();
+                loginUser(user);
+              }}
+            >
               Войти
             </button>
           </li>

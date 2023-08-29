@@ -1,12 +1,13 @@
-import React from 'react';
+import { ENDPOINTS, fetchRequest } from 'services/api';
 import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
-import { ROUTES } from 'utils/routes';
-import { fetchRequest, ENDPOINTS } from 'services/api';
 import { NEWS_PER_PAGE } from 'utils/constants';
 import PageWrapper from 'components/PageWrapper';
-import noImage from 'assets/images/no-image.png';
+import { ROUTES } from 'utils/routes';
+import React from 'react';
 import { getHumanDate } from 'utils/utils';
+import noImage from 'assets/images/no-image.jpeg';
 import styles from './Main.module.scss';
 
 const Main = () => {

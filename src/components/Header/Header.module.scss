@@ -2,13 +2,21 @@
 
 .navbar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   font-size: 18px;
+
+  @media (max-width: 815px) {
+    display: block;
+  }
 
   .nav_link_wrapper {
     display: flex;
     align-items: center;
+
+    @media (max-width: 815px) {
+      display: none;
+    }
 
     img {
       max-height: 50px;
@@ -19,26 +27,20 @@
     h1 {
       min-width: 280px;
     }
-
-    @media (max-width: 675px) {
-      display: none;
-    }
   }
 
   ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: stretch;
     margin-left: auto;
 
-    @media (max-width: 1180px) {
-      margin-left: 0;
-      margin-right: auto;
+    @media (max-width: 1219px) {
+      margin-left: 160px;
     }
 
-    @media (max-width: 675px) {
-      margin-left: auto;
-      margin-right: 0;
+    @media (max-width: 815px) {
+      margin-left: 85px;
     }
   }
 

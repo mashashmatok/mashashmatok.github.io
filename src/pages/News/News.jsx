@@ -1,10 +1,11 @@
+import { ENDPOINTS, fetchRequest } from 'services/api';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchRequest, ENDPOINTS } from 'services/api';
+
 import PageWrapper from 'components/PageWrapper';
-import noImage from 'assets/images/no-image.png';
 import { getHumanDate } from 'utils/utils';
+import noImage from 'assets/images/no-image.jpeg';
 import styles from './News.module.scss';
+import { useParams } from 'react-router-dom';
 
 const News = () => {
   const { id: newsId } = useParams(null);

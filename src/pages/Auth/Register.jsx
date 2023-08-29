@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { ENDPOINTS, METHODS, fetchRequest } from 'services/api';
 import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES } from 'utils/routes';
-import { fetchRequest, METHODS, ENDPOINTS } from 'services/api';
-import { ReactComponent as UserIcon } from 'assets/icons/user.svg';
+
 import { ReactComponent as LockIcon } from 'assets/icons/lock.svg';
 import PageWrapper from 'components/PageWrapper';
+import { ROUTES } from 'utils/routes';
+import { ReactComponent as UserIcon } from 'assets/icons/user.svg';
 import styles from './Auth.module.scss';
+import { useState } from 'react';
 
 const defaultUser = {
   email: '',
@@ -93,7 +94,13 @@ const Register = () => {
             <Link to={ROUTES.LOGIN}>Уже есть аккаунт</Link>
           </li>
           <li>
-            <button className="primary" onClick={() => addUser(user)}>
+            <button
+              className="primary"
+              onClick={e => {
+                e.preventDefault();
+                addUser(user);
+              }}
+            >
               Регистрация
             </button>
           </li>
