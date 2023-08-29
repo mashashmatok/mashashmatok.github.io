@@ -19,6 +19,10 @@
     h1 {
       min-width: 280px;
     }
+
+    @media (max-width: 675px) {
+      display: none;
+    }
   }
 
   ul {
@@ -30,6 +34,11 @@
     @media (max-width: 1180px) {
       margin-left: 0;
       margin-right: auto;
+    }
+
+    @media (max-width: 675px) {
+      margin-left: auto;
+      margin-right: 0;
     }
   }
 
