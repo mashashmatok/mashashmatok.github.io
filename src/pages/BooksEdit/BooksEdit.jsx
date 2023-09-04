@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-import PageWrapper from 'components/PageWrapper';
 import {
-  fetchRequest,
-  getFilesRequest,
-  METHODS,
   ENDPOINTS,
   GITHUB_FILE_BASE_URL,
+  METHODS,
+  fetchRequest,
+  getFilesRequest,
 } from 'services/api';
-import { formatDate } from 'utils/utils';
+import { useEffect, useState } from 'react';
+
 import ConfirmModal from 'components/Modal/ConfirmModal';
+import PageWrapper from 'components/PageWrapper';
 import Tooltip from 'components/Tooltip';
+import { formatDate } from 'utils/utils';
 import styles from './BooksEdit.module.scss';
 
 const DEFAULT_BOOK = {
@@ -49,7 +50,7 @@ const BooksEdit = () => {
   const getBooksFiles = () => {
     getFilesRequest().then(({ tree }) => {
       if (!tree) return;
-      const pdfs = tree?.filter(({ path }) => path.startsWith('pdf/')) || [];
+      const pdfs = tree?.filter(({ path }) => path.startsWith('books/')) || [];
       setBooksFiles(pdfs);
     });
   };
@@ -163,7 +164,7 @@ const BooksEdit = () => {
         setCurrentBook(prev => ({
           ...prev,
           pdfURL: fieldValue.length
-            ? GITHUB_FILE_BASE_URL + `pdf/` + fieldValue
+            ? GITHUB_FILE_BASE_URL + `books/` + fieldValue
             : '',
         }));
         break;
